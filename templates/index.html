@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI Web App</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>DinnerTonight AI Bio Generator</h1><br><br>
+    
+    <!-- Main container for the form and response -->
+    <div class="container">
+    
+    <!-- Form for user input -->
+    <form id="profileForm">
+        <!-- Career selection dropdown -->
+        <label for="career">Select Career:</label><br>
+        <div id="careerContainer" style="display: flex; align-items: center; gap: 10px; width: 100%;">
+            <select id="career" name="career" style="flex: 1;">
+                <option value="Software Engineer">Software Engineer</option>
+                <option value="Artist">Artist</option>
+                <option value="Entrepreneur">Entrepreneur</option>
+                <option value="Chef">Chef</option>
+                <option value="Teacher">Teacher</option>
+                <option value="Musician">Musician</option>
+                <option value="Others">Others</option>
+            </select>
+            <!-- Additional input for custom career -->
+            <input id="otherCareer" type="text" placeholder="If Others, please specify" style="display: none; flex: 1;" />
+        </div>
+        
+        <!-- Personality selection dropdown -->
+        <label for="personality">Select Personality:</label><br>
+        <div id="personalityContainer" style="display: flex; align-items: center; gap: 10px; width: 100%;">
+        <select id="personality" name="personality">
+            <option value="Adventurous">Adventurous</option>
+            <option value="Creative">Creative</option>
+            <option value="Compassionate">Compassionate</option>
+            <option value="Outgoing">Outgoing</option>
+            <option value="Introverted">Introverted</option>
+            <option value="Others">Others</option>
+        </select><br><br>
+        <!-- Additional input for custom personality -->
+        <input id="otherPersonality" type="text" placeholder="Specify if Others" style="flex: 1; display: none;" />
+        </div>
+
+        <!-- Interests selection dropdown -->
+        <label for="interests">Select Interests:</label><br>
+        <div id="interestsContainer" style="display: flex; align-items: center; gap: 10px; width: 100%;">
+        <select id="interests" name="interests">
+            <option value="Cooking">Cooking</option>
+            <option value="Traveling">Traveling</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Music">Music</option>
+            <option value="Literature">Literature</option>
+            <option value="Technology">Technology</option>
+            <option value="Gaming">Gaming</option>
+            <option value="Others">Others</option>
+        </select><br><br>
+        <!-- Additional input for custom interests -->
+        <input id="otherInterests" type="text" placeholder="Specify if Others" style="flex: 1; display: none;" />
+        </div>
+
+        <!-- Relationship goals dropdown -->
+        <label for="relationship_goals">Select Relationship Goals:</label><br>
+        <div id="relationshipGoalsContainer" style="display: flex; align-items: center; gap: 10px; width: 100%;">
+        <select id="relationship_goals" name="relationship_goals">
+            <option value="Casual">Casual</option>
+            <option value="Long-term">Long-term</option>
+            <option value="Adventurous">Adventurous</option>
+            <option value="Seeking Deep Connection">Seeking Deep Connection</option>
+            <option value="Others">Others</option>
+        </select><br><br>
+        <!-- Additional input for custom relationship goals -->
+        <input id="otherRelationshipGoals" type="text" placeholder="Specify if Others" style="flex: 1; display: none;" />
+        </div>
+        
+        <!-- Generate button -->
+        <button class="button" type="button" id="generateButton">
+              <path fill="none" d="M0 0h24v24H0z" stroke="none"></path>
+              <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path>
+              <path d="M7 11l5 5l5 -5"></path>
+              <path d="M12 4l0 12"></path>
+            </svg>
+            <span class="button_text">Generate</span>
+        </button>
+    </form>
+
+    <!-- Container for response and additional content -->
+    <div class="secondHalfContainer">
+    <div id="responseContainer">
+        <h2 id="responseHeader"></h2><br>
+        <p><strong id="topic"></strong> <span id="topic"></span></p>
+        <p><strong></strong> <span id="description"></span></p>
+        <div class="shareIcons">
+
+            <!-- SVG for copy button -->
+            <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+            <svg id="copyButton" width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 16V4C3 2.89543 3.89543 2 5 2H15M9 22H18C19.1046 22 20 21.1046 20 20V8C20 6.89543 19.1046 6 18 6H9C7.89543 6 7 6.89543 7 8V20C7 21.1046 7.89543 22 9 22Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        
+        </div>
+    </div>
+
+    <!-- Image section with overlay text -->
+    <div id="imageContainer">
+        <div id="overlayText">
+            Let DinnerTonight help you shine with a bio that captures your individuality and highlights your unique traits. Whether it’s your passions, personality, or aspirations, we’ll craft a personalized introduction that truly represents you. 
+            <span class="new-line">With a blend of creativity and precision, we transform your details into a compelling narrative that leaves a lasting impression.</span> 
+             
+          </div>
+        <img src="{{ url_for('static', filename='assets/image3.png') }}" alt="about_image" />
+    </div>
+    </div>
+    </div>
+
+    <script>
+        // Function to copy text to clipboard
+
+    
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    alert("Text copied to clipboard!");
+                })
+                .catch(err => {
+                    console.error("Failed to copy text: ", err);
+                });
+        }
+        
+        // Initial default text
+        document.getElementById("responseHeader").textContent = "Start generating using AI 👍"
+        document.getElementById("description").textContent = "Please select your preferences to proceed."
+
+        // Event listeners for dropdown changes
+        document.getElementById("career").addEventListener("change", function () {
+            const otherInput = document.getElementById("otherCareer");
+            if (this.value === "Others") {
+                otherInput.style.display = "block";
+                this.style.flex = "1";
+                otherInput.style.flex = "1";
+            } else {
+                this.style.flex = "1";
+                otherInput.style.display = "none";
+            }
+        });
+
+        document.getElementById("personality").addEventListener("change", function () {
+            const otherInput = document.getElementById("otherPersonality");
+            if (this.value === "Others") {
+                otherInput.style.display = "block";
+                this.style.flex = "1";
+                otherInput.style.flex = "1";
+            } else {
+                this.style.flex = "1";
+                otherInput.style.display = "none";
+            }
+        });
+
+        document.getElementById("interests").addEventListener("change", function () {
+            const otherInput = document.getElementById("otherInterests");
+            if (this.value === "Others") {
+                otherInput.style.display = "block";
+                this.style.flex = "1";
+                otherInput.style.flex = "1";
+            } else {
+                this.style.flex = "1";
+                otherInput.style.display = "none";
+            }
+        });
+
+        document.getElementById("relationship_goals").addEventListener("change", function () {
+            const otherInput = document.getElementById("otherRelationshipGoals");
+            if (this.value === "Others") {
+                otherInput.style.display = "block";
+                this.style.flex = "1";
+                otherInput.style.flex = "1";
+            } else {
+                this.style.flex = "1";
+                otherInput.style.display = "none";
+            }
+        });
+
+        // Event listener for the generate button
+        document.getElementById("generateButton").addEventListener("click", async () => {
+            let career = document.getElementById("career").value;
+            let personality = document.getElementById("personality").value;
+            let interests = document.getElementById("interests").value;
+            let relationshipGoals = document.getElementById("relationship_goals").value;
+
+            // Check and use custom inputs if 'Others' is selected
+            if (career == "Others") {
+                career = document.getElementById("otherCareer").value;
+            }
+            if (personality == "Others") {
+                career = document.getElementById("otherPersonality").value;
+            }
+            if (interests == "Others") {
+                career = document.getElementById("otherInterests").value;
+            }
+            if (relationship_goals == "Others") {
+                career = document.getElementById("otherRelationshipGoals").value;
+            }
+
+            try {
+                const response = await fetch("/generate", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        career,
+                        personality,
+                        interests,
+                        relationship_goals: relationshipGoals
+                    })
+                });
+    
+                if (!response.ok) {
+                    const error = await response.json();
+                    alert(error.error || "Something went wrong!");
+                    return;
+                }
+
+                // Update response container with data
+                document.getElementById("responseHeader").textContent = "Congratulations, your bio is ready !!!"
+                const data = await response.json();
+                document.getElementById("topic").innerHTML = `<strong>${data.topic}</strong>`;
+                document.getElementById("description").textContent = data.description;
+    
+                // Combine the response into a string for copying
+                const responseString = `${data.topic} ${data.description}`;
+                
+                // Enable copying
+                document.getElementById("copyButton").onclick = () => {
+                    copyToClipboard(responseString);
+                };
+    
+            } catch (error) {
+                console.error(error);
+                alert("Failed to fetch response from the server. Try reloading the page.");
+            }
+        });
+    </script>
+</body>
+</html>

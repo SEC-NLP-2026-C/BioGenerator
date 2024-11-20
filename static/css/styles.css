@@ -1,0 +1,322 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(
+      90deg,
+      rgb(240, 248, 255) 0%, /* Alice Blue */
+      rgb(122, 122, 197) 100% /* Lavender */
+  );
+  color: #333;
+  margin: 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align contents from the top */
+  min-height: 90%;
+  overflow: hidden;
+}
+
+/* Main Heading */
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  color: rgb(25, 25, 112); /* Midnight Blue */
+}
+
+/* Container Layout */
+.container {
+  display: flex;
+  flex-direction: row; /* Arrange form and responseContainer side by side */
+  width: 100%;
+  max-width: 1300px;
+  height: 70%;
+  padding: 20px;
+  justify-content: space-between;
+  flex: 1;
+}
+
+/* Button Styling - From Uiverse.io by Creatlydev */
+.button {
+  line-height: 1;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.75em 1em;
+  padding-right: 1.25em;
+  color: #fff;
+  border: 1px solid transparent;
+  font-weight: 700;
+  border-radius: 2em;
+  font-size: 1rem;
+  box-shadow: 0 0.7em 1.5em -0.5em hsla(249, 62%, 51%, 0.745);
+  transition: transform 0.3s;
+  background: linear-gradient(
+      90deg,
+      rgb(37, 25, 107) 0%,
+      rgba(132, 116, 254, 1) 100%
+  );
+}
+
+/* Button Text Styling */
+.button_text {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Button Icon */
+.button__icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/* Button Hover Effect */
+.button:hover {
+  border-color: #f4f5f2;
+}
+
+/* Button Active State */
+.button:active {
+  transform: scale(0.98);
+  box-shadow: 0 0.5em 1.5em -0.5em hsla(249, 62%, 51%, 0.745);
+}
+
+/* Form Styling */
+form {
+  flex: 1;
+  margin: 0 10px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  justify-content: center;
+}
+
+/* Second Half Container Layout */
+.secondHalfContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 50%;
+  justify-content: center;
+}
+
+/* Response Container Styling */
+#responseContainer {
+  flex: 1;
+  margin: 10px 10px;
+  background: linear-gradient(90deg, #e0f7fa, #ffffff);
+  padding: 20px;
+  min-height: 50%;
+  max-height: 50%;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  position: relative;
+}
+
+/* Image Container Styling */
+#imageContainer {
+  position: relative;
+  flex: 1;
+  margin: 10px 10px;
+  background: linear-gradient(90deg, #e0f7fa, #ffffff);
+  padding: 20px;
+  min-height: 50%;
+  max-height: 50%;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+/* Image Styling */
+#imageContainer img {
+  opacity: 10%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+  width: 100%; /* Span the width of the container */
+  height: 100%; /* Span the height of the container */
+  object-fit: cover; /* Maintain aspect ratio and fill the container */
+}
+
+/* Overlay Text Styling */
+#overlayText {
+  position: absolute;
+  top: 10%; /* Adjust the vertical position */
+  left: 50%; /* Center text horizontally */
+  transform: translateX(-50%);
+  color: #030950bb; /* Text color */
+  font-size: 15px; /* Font size */
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(107, 111, 136, 0.541); /* Add shadow for readability */
+  z-index: 1; /* Ensure text is above the image */
+  text-align: start;
+  width: 90%;
+}
+
+/* New Line Block */
+.new-line {
+  display: block; /* Force text on a new line */
+  margin-top: 15px;
+}
+
+/* About Section */
+#about {
+  margin: 10px;
+  padding-bottom: 30px;
+}
+
+/* Button Styling */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Button Hover Effect */
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Share Icons Layout */
+.shareIcons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+}
+
+/* Subheading Styling */
+h2 {
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+/* Topic and Description Styling */
+#topic,
+#description {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  font-weight: normal;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  form,
+  #responseContainer {
+      padding: 15px;
+  }
+
+  button {
+      font-size: 14px;
+  }
+
+  select {
+      font-size: 14px;
+  }
+}
+
+/* Profile Form Styling */
+#profileForm {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background: linear-gradient(90deg, #e0f7fa, #ffffff);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Response Header Styling */
+#responseHeader {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+  color: #030950bb;
+}
+
+/* Topic Label Styling */
+#topic,
+label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+  color: #030950bb;
+}
+
+/* Description Text Styling */
+#description {
+  font-weight: normal;
+  color: #222e72; /* Bright indigo blue */
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+/* Input and Select Fields */
+select,
+input {
+  font-size: 1rem;
+  padding: 10px;
+  border: 1px solid #cfd8dc;
+  border-radius: 8px;
+  outline: none;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Input and Select Hover Effects */
+select:hover,
+input:hover {
+  border-color: #42a5f5;
+  box-shadow: 0 4px 6px rgba(66, 165, 245, 0.4);
+}
+
+/* Input and Select Focus Effects */
+select:focus,
+input:focus {
+  border-color: #1e88e5;
+  box-shadow: 0 0 6px rgba(30, 136, 229, 0.5);
+}
+
+/* Hidden Input Fields */
+input[type="text"] {
+  display: none;
+}
+
+/* Dropdown Containers */
+#careerContainer,
+#personalityContainer,
+#interestsContainer,
+#relationshipGoalsContainer {
+  margin-bottom: 20px;
+}
